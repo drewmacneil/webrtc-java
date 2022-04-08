@@ -78,7 +78,7 @@
 			<plugin>
 				<groupId>com.googlecode.cmake-maven-project</groupId>
 				<artifactId>cmake-maven-plugin</artifactId>
-				<version>3.19.2-b1</version>
+				<version>3.22.1-b1</version>
 				<executions>
 					<execution>
 						<id>cmake-generate</id>
@@ -139,6 +139,19 @@
 			</activation>
 			<properties>
 				<cmake.options>-Ax64</cmake.options>
+				<cmake.config>${cmake.build.type}</cmake.config>
+			</properties>
+		</profile>
+		<profile>
+			<id>mac-aarch64</id>
+			<activation>
+				<os>
+					<family>mac</family>
+					<arch>aarch64</arch>
+				</os>
+			</activation>
+			<properties>
+				<cmake.options>-DTARGET_CPU=aarch64</cmake.options>
 				<cmake.config>${cmake.build.type}</cmake.config>
 			</properties>
 		</profile>
