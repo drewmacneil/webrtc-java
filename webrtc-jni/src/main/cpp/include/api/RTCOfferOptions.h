@@ -35,6 +35,8 @@ namespace jni
 
 				jclass cls;
 				jmethodID ctor;
+				jfieldID offerToReceiveAudio;
+				jfieldID offerToReceiveVideo;
 				jfieldID vad;
 				jfieldID iceRestart;
 		};

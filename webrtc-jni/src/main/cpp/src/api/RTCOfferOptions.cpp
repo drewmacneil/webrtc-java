@@ -32,6 +32,8 @@ namespace jni
 
 			jobject obj = env->NewObject(javaClass->cls, javaClass->ctor);
 
+			env->SetIntField(obj, javaClass->offerToReceiveAudio, nativeType.offer_to_receive_audio);
+			env->SetIntField(obj, javaClass->offerToReceiveVideo, nativeType.offer_to_receive_video);
 			env->SetBooleanField(obj, javaClass->vad, nativeType.voice_activity_detection);
 			env->SetBooleanField(obj, javaClass->iceRestart, nativeType.ice_restart);
 
@@ -45,6 +47,8 @@ namespace jni
 			JavaObject obj(env, javaType);
 
 			webrtc::PeerConnectionInterface::RTCOfferAnswerOptions options;
+			options.offer_to_receive_audio = obj.getInt(javaClass->offerToReceiveAudio);
+			options.offer_to_receive_video = obj.getInt(javaClass->offerToReceiveVideo);
 			options.voice_activity_detection = obj.getBoolean(javaClass->vad);
 			options.ice_restart = obj.getBoolean(javaClass->iceRestart);
 
@@ -57,6 +61,8 @@ namespace jni
 
 			ctor = GetMethod(env, cls, "<init>", "()V");
 
+			offerToReceiveAudio = GetFieldID(env, cls, "offerToReceiveAudio", "I");
+			offerToReceiveVideo = GetFieldID(env, cls, "offerToReceiveVideo", "I");
 			vad = GetFieldID(env, cls, "voiceActivityDetection", "Z");
 			iceRestart = GetFieldID(env, cls, "iceRestart", "Z");
 		}

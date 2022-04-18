@@ -25,6 +25,22 @@ package dev.onvoid.webrtc;
 public class RTCOfferOptions extends RTCOfferAnswerOptions {
 
 	/**
+	 * Provides additional control over the directionality of audio. For example,
+	 * it can be used to ensure that audio can be received, regardless if audio
+	 * is sent or not.
+	 */
+	public int offerToReceiveAudio;
+
+
+	/**
+	 * Provides additional control over the directionality of video. For example,
+	 * it can be used to ensure that video can be received, regardless if video
+	 * is sent or not.
+	 */
+	public int offerToReceiveVideo;
+
+	
+	/**
 	 * When set to {@code true}, the generated description will have ICE
 	 * credentials that are different from the current credentials. Applying the
 	 * generated description will restart ICE.
@@ -43,6 +59,8 @@ public class RTCOfferOptions extends RTCOfferAnswerOptions {
 		super();
 
 		iceRestart = false;
+		offerToReceiveAudio = 0;
+		offerToReceiveVideo = 0;
 	}
 
 }
